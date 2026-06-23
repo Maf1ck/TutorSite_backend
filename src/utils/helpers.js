@@ -12,6 +12,15 @@ export const GOAL_MAP = {
   'olympiad': 'Олімпіадна математика / Логіка'
 };
 
+export const COUNTRY_MAP = {
+  'ukraine': 'Україна',
+  'poland': 'Польща',
+  'germany': 'Німеччина',
+  'austria': 'Австрія',
+  'czech-republic': 'Чехія',
+  'usa': 'США'
+};
+
 // HTML escape helper to prevent breaking Telegram's HTML parse mode
 export function escapeHtml(text) {
   if (!text) return '';
