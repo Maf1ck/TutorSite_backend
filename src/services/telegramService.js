@@ -1,10 +1,10 @@
-import { escapeHtml, GRADE_MAP, GOAL_MAP } from '../utils/helpers.js';
+import { escapeHtml, GRADE_MAP, GOAL_MAP, COUNTRY_MAP } from '../utils/helpers.js';
 
 /**
  * Sends a form submission notification to the configured Telegram chat.
  * Emojis are removed from the message template.
  */
-export async function sendConsultationNotification({ name, contact, grade, goal, comment }) {
+export async function sendConsultationNotification({ name, contact, grade, country, goal, comment }) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
@@ -14,6 +14,7 @@ export async function sendConsultationNotification({ name, contact, grade, goal,
 
   const displayGrade = GRADE_MAP[grade] || grade || 'Не вказано';
   const displayGoal = GOAL_MAP[goal] || goal || 'Не вказано';
+  const displayCountry = COUNTRY_MAP[country] || country || 'Не вказано';
   const displayComment = comment && comment.trim() ? comment.trim() : 'Немає';
 
   const messageHtml = [
@@ -21,6 +22,7 @@ export async function sendConsultationNotification({ name, contact, grade, goal,
     `<b>Ім'я:</b> ${escapeHtml(name)}`,
     `<b>Контакт:</b> <code>${escapeHtml(contact)}</code>`,
     `<b>Клас/Вік:</b> ${escapeHtml(displayGrade)}`,
+    `<b>Країна:</b> ${escapeHtml(displayCountry)}`,
     `<b>Мета занять:</b> ${escapeHtml(displayGoal)}`,
     `<b>Коментар:</b> <i>${escapeHtml(displayComment)}</i>`
   ].join('\n');
