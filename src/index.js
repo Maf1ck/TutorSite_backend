@@ -11,6 +11,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Correct client IP behind Render / Railway / nginx
+app.set('trust proxy', 1);
+
 // Enable CORS for frontend requests
 app.use(cors());
 // Parse incoming JSON requests
